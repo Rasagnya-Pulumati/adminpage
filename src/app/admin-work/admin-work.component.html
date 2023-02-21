@@ -1,0 +1,97 @@
+<div style="margin-left:15%;width:30%;height:100%;margin-bottom:20%;background-color: rgb(239, 181, 239);">
+    <form (ngSubmit)="submitForm()" #hotelForm="ngForm">
+        
+        <div class="form-group">
+            <label>Enter Hotel Name</label>
+            
+            <input type="text" #hotelName="ngModel"  pattern="[a-zA-Z]+" [(ngModel)]="h.hotelName" class="form-control" id="hname" name="hname" placeholder="Enter Hotel Name"required>
+            <div *ngIf="hotelName.invalid">
+                <span style="color: red;" *ngIf="hotelName.errors?.['required']">
+                   
+                    Hotel Name is required Field 
+               </span> 
+               <span style="color: red;" *ngIf="hotelName.errors?.['pattern']">
+                Hotel Name is not valid
+               </span>
+            </div>
+        </div>
+        
+
+        <div class="form-group" [class.has-error]="location.touched && location.invalid">
+            <label class="mr-sm-2">Location</label>
+            <select [(ngModel)]="h.location" required #location="ngModel" class="form-control form-control-lg" id="hlocation" name="hlocation">
+                <!--<option selected>Choose...</option>-->
+
+                <option value="Banglore "> Banglore </option>
+                <option value="New Delhi"> New Delhi </option>
+                <option value="Hyderabad"> Hyderabad </option>
+                <option value="Chennai"> Chennai </option>
+            </select>
+            <span class="help-block" *ngIf="location.touched && location.invalid">
+                Department is required
+            </span>
+            
+        </div>
+        <div class="form-group">
+            <label>Enter Manager</label>
+            
+            <input type="text" #manager="ngModel"  [(ngModel)]="h.manager" class="form-control" id="hmanager" name="hmanager" placeholder="Enter Manager Name"required pattern="[a-zA-Z]{3,}">
+            <div *ngIf="manager.invalid">
+                <span style="color: red;" *ngIf="manager.errors?.['required']">
+                   
+                manager Name is required Field 
+
+                </span> 
+                <span style="color: red;" *ngIf="manager.errors?.['pattern']">
+                manager Name must be above 2 characters
+                </span>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label>Image</label>
+            
+            <input type="text" [(ngModel)]="h.imageName" #imageName="ngModel" class="form-control" id="himage" name="imageName"placeholder="with extention exp *.jpg" required pattern="[a-zA-Z0-9]+[.jpg]{4}">
+            <div *ngIf="imageName.invalid">
+                <span style="color: red;" *ngIf="imageName.errors?.['required']">
+                   
+                Image is required Field 
+               </span> 
+               <span style="color: red;" *ngIf="imageName.errors?.['pattern']">
+                Image should have an extention of .jpg 
+               </span>
+             </div>
+        </div>
+        <div class="form-group">
+            <label>About Hotel</label>
+            
+            <textarea [(ngModel)]="h.about" class="form-control" id="abouthotel" name="abouthotel"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Discount</label>
+            
+            <input type="number" #discount="ngModel" [(ngModel)]="h.discount"  class="form-control" id="hdiscount" name="hdiscount" placeholder="In %" required pattern="[0-9]{1,2}">
+            <div *ngIf="discount.invalid">
+                <span style="color: red;" *ngIf="discount.errors?.['required']">
+                   
+                   Discount is required Field 
+               </span> 
+               <span style="color: red;" *ngIf="discount.errors?.['pattern']">
+                    Discount Duration is not valid
+               </span>
+             </div>
+        </div>
+        
+        
+        
+            <input type="reset" value="Reset">
+            <button type="submit" class="btn btn-primary mb-2" [disabled]="hotelForm.form.invalid" value="{{h.hotelId}}"  click="submitForm()"#hotel >Add now</button> 
+        
+    
+<br/>
+
+  
+    </form>
+</div>
+
+    

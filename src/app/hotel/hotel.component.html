@@ -1,0 +1,11 @@
+<p>hotel works!</p>
+<input type="text" #cityName>
+
+<button (click)="getByCity(cityName.value)">List Of Hotels</button>
+
+<div *ngFor="let x of allHotels">
+    
+    <div> {{x.hotelName}}</div>
+    <div> {{x.address}}</div>
+    <hr/>
+</div>
